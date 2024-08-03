@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "asag2024"
+version = "0.1.0"
+description = ""
+authors = ["Gerome Meyer <gerome.meyer@protonmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pandas = "^2.2.2"
+pyarrow = "^17.0.0"
+lxml = "^5.2.2"
+datasets = "^2.20.0"
+alive-progress = "^3.1.5"
+dvc = { extras = ["gdrive"], version = "^3.53.0" }
+einops = "^0.8.0"
+scikit-learn = "^1.5.1"
+
+
+[tool.poetry.group.dev.dependencies]
+jupyterlab = "^4.2.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.setuptools.packages.find]
+# All the following settings are optional:
+where = ["asag2024_benchmark"]

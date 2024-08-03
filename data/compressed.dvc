@@ -1,0 +1,6 @@
+outs:
+- md5: f1f523a864822eec07a82d1209fcc431.dir
+  size: 15668542
+  nfiles: 6
+  hash: md5
+  path: compressed

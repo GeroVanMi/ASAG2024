@@ -1,0 +1,58 @@
+schema: '2.0'
+stages:
+  extract_data:
+    cmd: bash asag2024/benchmark_pipeline/extract_files.sh
+    deps:
+    - path: asag2024/benchmark_pipeline/extract_files.sh
+      hash: md5
+      md5: cb652ca55ec26cf5ceb9f38715de3a50
+      size: 470
+    - path: data/compressed/
+      hash: md5
+      md5: f1f523a864822eec07a82d1209fcc431.dir
+      size: 15668542
+      nfiles: 6
+    outs:
+    - path: data/original/
+      hash: md5
+      md5: fa3c0f3a0ffc56df3ab2543a35268f8b.dir
+      size: 37009594
+      nfiles: 23084
+  combine_data:
+    cmd: python asag2024/benchmark_pipeline/combine_pipeline.py
+    deps:
+    - path: asag2024/benchmark_pipeline
+      hash: md5
+      md5: ea0ec0de5bab77e32f16acf2725e21e4.dir
+      size: 38295
+      nfiles: 23
+    - path: data/original
+      hash: md5
+      md5: fa3c0f3a0ffc56df3ab2543a35268f8b.dir
+      size: 37009594
+      nfiles: 23084
+    outs:
+    - path: data/processed/combined_asag2024.pq
+      hash: md5
+      md5: 4ee27033e51621252d78c9c777c98430
+      size: 1392672
+  evaluate_nomic:
+    cmd: python src/models/nomic_embeddings.py
+    deps:
+    - path: data/processed/combined_asag2024.pq
+      hash: md5
+      md5: 2f0324a08d29159bd77f421334f200c0
+      size: 1371278
+    - path: src/models/nomic_embeddings.py
+      hash: md5
+      md5: 48ed047012d2cae7c4a67260e7899066
+      size: 2702
+    outs:
+    - path: data/processed/nomic_embeddings.pq
+      hash: md5
+      md5: e833425a03d245d068e2055f9ec84ae9
+      size: 81366386
+    - path: data/processed/nomic_results.pq
+      hash: md5
+      md5: 61c729b194e66de3eeb3ae0f4e05a756
+      size: 81623041

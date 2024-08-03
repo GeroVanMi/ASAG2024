@@ -1,0 +1,15 @@
+stages:
+  extract_data:
+    cmd: bash asag2024/benchmark_pipeline/extract_files.sh
+    deps:
+      - data/compressed/
+      - asag2024/benchmark_pipeline/extract_files.sh
+    outs:
+      - data/original/
+  combine_data:
+    cmd: python asag2024/benchmark_pipeline/combine_pipeline.py
+    deps:
+      - data/original
+      - asag2024/benchmark_pipeline
+    outs:
+      - data/processed/combined_asag2024.pq
