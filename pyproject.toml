@@ -15,10 +15,11 @@ alive-progress = "^3.1.5"
 dvc = { extras = ["gdrive"], version = "^3.53.0" }
 einops = "^0.8.0"
 scikit-learn = "^1.5.1"
+altair = "^5.4.1"
 
 
 [tool.poetry.group.dev.dependencies]
-jupyterlab = "^4.2.4"
+jupyterlab = "^4.2.5"
 
 [build-system]
 requires = ["poetry-core"]

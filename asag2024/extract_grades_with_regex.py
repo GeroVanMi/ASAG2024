@@ -4,19 +4,38 @@ from pathlib import Path
 import pandas as pd
 
 
-def extract_grade(llm_answer: str):
-    """
-    Extracts the first digit after the word "grade".
+def extract_grade(llm_answer: str) -> str:
+    """Extracts the first digit after the word "grade" or "G" from a string.
+
+    Args:
+        llm_answer: String containing a grade assessment response from an LLM.
+
+    Returns:
+        str: The extracted grade digit (0-5).
+
+    Raises:
+        ValueError: If no valid grade can be extracted from the input string.
     """
     trimmed_llm_answer = llm_answer.replace("\n", "")
-    grade_match = re.search(r"(G|grade)((?![0-5]).*)([0-5])", trimmed_llm_answer)
+    grade_match = re.search(r"(Grade|grade)((?![0-5]).*)([0-5])", trimmed_llm_answer)
     if grade_match is not None:
         return grade_match.group(3)
 
     raise ValueError(f"Failed to match the grade in:\n{llm_answer}")
 
 
-def extract_grade_from_file(path: Path):
+def extract_grade_from_file(path: Path) -> str:
+    """Reads a file and extracts a grade from its contents.
+
+    Args:
+        path: Path object pointing to the file to read.
+
+    Returns:
+        str: The extracted grade digit (0-5).
+
+    Raises:
+        ValueError: If no valid grade can be extracted from the file contents.
+    """
     with open(path, mode="r") as file:
         llm_answer = file.read()
         return extract_grade(llm_answer)

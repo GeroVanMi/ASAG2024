@@ -10,6 +10,7 @@ NOMIC_EMBEDDINGS_PATH = processed_data_path.joinpath("nomic_embeddings.pq")
 COMBINED_DATASET_PATH = processed_data_path.joinpath("combined_asag2024.pq")
 LLM_RESPONSES_PATH = processed_data_path.joinpath("llm_responses/")
 PROMETHEUS_PATH = LLM_RESPONSES_PATH.joinpath("prometheus/")
+HUGGINGFACE_OUTPUT_PATH=processed_data_path.joinpath("huggingface_data.pq")
 
 # GPT-4o intermediate and final results
 GPT4_BATCH_PROMPTS_PATH = processed_data_path.joinpath("asag2024_prompts.jsonl")
